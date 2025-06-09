@@ -25,21 +25,39 @@ app.use(express.json()); // Parse JSON bodies
 // POST /capture to save UX session
 app.post('/capture', async (req, res) => {
   try {
-    const { url, rawText, deviceInfo } = req.body;
+    const {
+      url,
+      rawText,
+      deviceInfo,
+      timestamp,   // ✅ add this
+      headings,    // ✅ add this
+      buttons,     // ✅ add this
+      alerts       // ✅ add this
+    } = req.body;
 
     if (!url || !rawText) {
       return res.status(400).json({ error: 'url and rawText are required' });
     }
 
-    const newSession = new UXSession({ url, rawText, deviceInfo });
-    const savedSession = await newSession.save();
+    const newSession = new UXSession({
+      url,
+      rawText,
+      deviceInfo,
+      timestamp,  // ✅ saved explicitly
+      headings,
+      buttons,
+      alerts
+    });
 
+    const savedSession = await newSession.save();
     res.status(201).json(savedSession);
+
   } catch (err) {
     console.error('Error saving UX session:', err);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
 
 // Basic GET for testing
 app.get('/', (req, res) => {
