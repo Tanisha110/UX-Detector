@@ -486,7 +486,7 @@ class DarkPatternDetector {
       }
     };
   }
-  // Add these methods to your DarkPatternDetector class
+  // Add these missing methods to your DarkPatternDetector class
 
 // 8. Contact Access - Enhanced
 detectContactAccess({ rawText, buttons }) {
