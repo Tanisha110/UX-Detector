@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 const UXSession = require('./models/UXsession');
-const DarkPatternDetector = require('./darkPatternDetector');
+const DarkPatternDetector = require('./patternfullcode');
 
 const app = express();
 const detector = new DarkPatternDetector();
